@@ -1,0 +1,89 @@
+PennController.ResetPrefix(null) // Shorten command names (keep this line here)
+
+// Show the 'intro' trial first, then all the 'experiment' trials in a random order
+// then send the results and finally show the trial labeled 'bye'
+Sequence( "partie1", "partie2", randomize("experiment") , SendResults() , "bye" )
+
+
+// What is in Header happens at the beginning of every single trial
+
+newTrial( "partie1" ,
+    newImage("vegan.jpg")
+        .size( 200 , 150 )      // Resize the image to 150x250px
+        .print()
+    ,
+    newText("<p>Vous allez a present remplir un petit questionnaire:")
+        .print()
+    ,
+    newScale("Combien de fois mangez-vous de la viande par semaine",   "jamais   ", "une fois ou moins   ", "entre 3 et 4 fois   ", "plus de 4 fois    ")
+    .settings.before( newText("top", "Combien de fois mangez-vous de la viande par semaine?") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+    newScale("Avez-vous change de regime alimentaire au cours de votre vie?",   "oui   ", "non   ")
+    .settings.before( newText("top", "Avez-vous deja change de regime alimentaire au cours de votre vie?") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+    newText("Si oui, depuis combien de temps?")
+        .print()
+    ,
+    newVar("temps")
+    ,
+    newTextInput()
+        .print()
+        .wait()
+        .setVar("temps")
+    )
+newTrial("partie2",
+    newScale("Faisez-vous vos propre repas",   "oui   ", "non   ")
+    .settings.before( newText("top", "Preparez-vous vos propres repas?") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+    newScale("Si oui combien des fois par semaine",   "une fois par semaine   ", "entre 2 et 4 fois par semaine  ", "une fois par jour   ", "Tous les repas      "    )
+    .settings.before( newText("top", "Combien de fois preparez vous vos propres repas?") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+        newScale("Est-ce que quelqu'un dans votre entourage est végétarien/vegan",   "oui   ", "non   ")
+    .settings.before( newText("top", "Avez-vous quelqu'un de vagétarien ou vegan dans votre entourage proche?") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+     newScale("Mangez-vous avec quelqu'un de vegetarien plus d'une fois par semaine?",   "oui   ", "non   ")
+    .settings.before( newText("top", "Mangez-vous avec quelqu'un de vegetarien plus d'une fois par semaine?") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+    newScale("Le vegetarisme est-il un sujet de conversation fréquent avec votre entourage?",   "1", "2","3","4","5")
+    .settings.before( newText("top", "Le vegetarisme est-il un sujet de conversation fréquent avec votre entourage, sur une échelle de 1 (=jamais) à 5(=beaucoup) ?") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+    newScale("Estimez vous que vous connaissez l’importance des enjeux santé,éthique et environnementaux associés à la consommation de viande ?(échelle de 1 à 5, avec 1 = pas du tout et 5 = beaucoup)",   "1", "2","3","4","5")
+    .settings.before( newText("top", "Estimez vous que vous connaissez l’importance des enjeux santé,éthique et environnementaux associés à la consommation de viande ?(échelle de 1 à 5, avec 1 = pas du tout et 5 = beaucoup)") )
+    .settings.radio()
+    .settings.labelsPosition("right")
+    .print()
+    .wait()
+    ,
+    newButton("Valider")
+     .print()
+     .wait()
+     
+)
