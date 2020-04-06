@@ -1,0 +1,27 @@
+newTrial(
+    newText("<p>Nous faisons un test sur les habitudes alimentaires et sur la manière de cuisiner.")
+        .print()
+    ,
+    newText("Mettez-vous dans une <strong>endroit calme</strong> et veuillez répondre le plus naturellement possiblement et en <strong>temps réel</strong>.")
+        .print()
+    ,
+    newText("<p>C’est l’heure de manger. Vous êtes en train de vous préparer votre <strong>repas du midi</strong>, et plus précisément votre plat principal.")
+        .print()
+    ,
+    newText("<p>Vous avez tout à disposition dans votre cuisine. Voici une liste non-exhaustive : riz, pâtes, pommes de terre, petit pois, carottes, semoule, courgettes, haricots verts, choux fleur, boulgour, épices (de votre choix), sauces de votre choix, patates douces, potimarron ou courge, frites, quinoa, tomates, oignon, ail, poivrons etc.")
+        .print()
+    ,
+    newText("<p>Dans un premier temps vous allez composer un plat principal pour le midi et vous ne devez choisir qu'un seul accompagnement.")
+        .print()
+    ,
+    newImage("alimentation.jpg")
+        .size(300,300)
+        .print()
+    ,
+    newButton("continue", "Clique pour commencer.")
+        .print()
+        .wait()
+)
+
+SendResults()
+
