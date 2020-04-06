@@ -1,0 +1,98 @@
+// This is a simple demo script, feel free to edit or delete it
+// Find a tutorial and the list of availalbe elements at:
+// https://www.pcibex.net/documentation/
+
+PennController.ResetPrefix(null) // Shorten command names (keep this line here)
+
+// Show the 'intro' trial first, then all the 'experiment' trials in a random order
+// then send the results and finally show the trial labeled 'bye'
+Sequence( "intro", "generalites", randomize("experiment") , SendResults() , "bye" )
+
+newTrial("intro",
+    newText("<p>Entre ton nom et clique sur le bouton START.")
+        .print()
+    ,
+    newTextInput("inputID")
+        .print()
+    ,
+    newButton("<p>Start")
+        .print()
+        .wait()
+    ,
+    newVar("ID")
+        .global()
+        .set( getTextInput("inputID") )
+)
+.log( "ID" , getVar("ID") )
+
+newTrial( "generalites" ,
+    defaultText
+        .settings.center()
+    ,
+    newText("<p>Vous allez a present remplir un petit questionnaire:")
+        .settings.bold()
+        .print()
+    ,
+    newScale("Sexe","une femme","un homme")
+        .settings.before( newText("top","<strong>Vous etes ... ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newText("<strong>Quel est votre age ?</strong>")
+        .print()
+    ,
+    newVar("age")
+    ,
+    newTextInput()
+        .print()
+        .wait()
+        .setVar("age")
+    ,
+    newButton("Valider")
+        .print()
+        .wait()
+     
+)
+SendResults()
+
+// This Template command generates as many trials as there are rows in myTable.csv
+Template( "myTable.csv" ,
+    // Row will iteratively point to every row in myTable.csv
+    row => newTrial( "experiment" ,
+        // The trials are minimal: choose a pronoun from a DropDown list
+        newText("<p>Ecrivez <strong> un seul </strong>aliment que vous cuisineriez avec une proteine (vegetale ou animale) que l'on va vous imposer")
+            .print()
+        ,
+        newTextInput()
+            .before( newText(row.alimentimpose) )    // Print the sentence to the left of the list
+            .print()
+            .wait()
+            .log()                              // Make sure to log the participant's selection
+        ,
+        newButton("Next")
+            .print()
+            .wait()
+    )
+    .log( "alimentimpose" , row.alimentimpose )
+    .log( "choix" , row.choix )
+    // Add these two columns to the results lines of these Template-based trials
+)
+
+
+// Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
+newTrial( "bye" ,
+    newText("Merci pour votre participation!")
+        .print()
+    ,
+    newText("<p><a href='https://www.pcibex.net/'>Click here to validate your participation.</a></p>")
+        .print()
+    ,
+    newButton("void")
+        .wait()
+   
+)
+.setOption( "countsForProgressBar" , false )
+// Make sure the progress bar is full upon reaching this last (non-)trial
+
