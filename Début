@@ -18,10 +18,18 @@ newTrial(
         .size(300,300)
         .print()
     ,
-    newButton("continue", "Clique pour commencer.")
+    newText("<p>Entre ton nom et clique sur le bouton START.")
+        .print()
+    ,
+    newTextInput("inputID")
+        .print()
+    ,
+    newButton("<p>Start")
         .print()
         .wait()
+    ,
+    newVar("ID")
+        .global()
+        .set( getTextInput("inputID") )
 )
-
-SendResults()
-
+.log( "ID" , getVar("ID") )
