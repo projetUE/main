@@ -10,4 +10,3 @@ newTrial(
         .wait()
 )
 
-SendResults()
