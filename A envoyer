@@ -1,0 +1,299 @@
+// This is a simple demo script, feel free to edit or delete it
+// Find a tutorial and the list of availalbe elements at:
+// https://www.pcibex.net/documentation/
+
+PennController.ResetPrefix(null) // Shorten command names (keep this line here)
+
+// Show the 'intro' trial first, then all the 'experiment' trials in a random order
+// then send the results and finally show the trial labeled 'bye'
+Sequence( "intro", "généralités","régimes", randomize("experiment") , SendResults() , "bye" )
+
+
+
+
+newTrial("intro",
+    newText("<p>Nous faisons un test sur les habitudes alimentaires et sur la manière de cuisiner.")
+        .print()
+    ,
+    newText("Mettez-vous dans une <strong>endroit calme</strong> et veuillez répondre le plus naturellement possiblement et en <strong>temps réel</strong>.")
+        .print()
+    ,
+    newText("<p>C’est l’heure de manger. Imaginez-vous, en situation normal, en train de vous préparer votre <strong>repas du midi</strong>, et plus précisément votre plat principal.")
+        .print()
+    ,
+    newText("<p>Vous avez tout à disposition dans votre cuisine. Voici une liste non-exhaustive : riz, pâtes, pommes de terre, petit pois, carottes, semoule, courgettes, haricots verts, choux fleur, boulgour, épices (de votre choix), sauces de votre choix, patates douces, potimarron ou courge, frites, quinoa, tomates, oignon, ail, poivrons etc.")
+        .print()
+    ,
+    newText("<p>Dans un premier temps vous allez composer un plat principal pour le midi et vous ne devez choisir qu'un seul accompagnement.")
+        .print()
+    ,
+    newImage("alimentation.jpg")
+        .size(300,300)
+        .print()
+    ,
+    newText("<p>Entre ton nom et clique sur le bouton START.")
+        .print()
+    ,
+    newTextInput("inputID")
+        .print()
+    ,
+    newButton("<p>Start")
+        .print()
+        .wait()
+    ,
+    newVar("ID")
+        .global()
+        .set( getTextInput("inputID") )
+)
+.log( "ID" , getVar("ID") )
+
+newTrial( "généralités" ,
+    defaultText
+        .settings.center()
+    ,
+    newText("<p>Vous allez à present remplir un petit questionnaire:")
+        .settings.bold()
+        .print()
+    ,
+    newScale("Sexe","une femme","un homme")
+        .settings.before( newText("top","<strong>Vous êtes ... ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    
+    ,
+    newVar("sex")
+        .global()
+        .set(getScale("Sexe"))
+        
+    ,
+    newText("<strong>Quel est votre âge ?</strong>")
+        .print()
+    ,
+    newTextInput("qage")
+        .print()
+        .wait()
+    ,
+    
+    newVar("age")
+        .global()
+        .set(getTextInput("qage"))
+    ,
+    newScale("intolerances",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong>Avez-vous des allergies ou des intolérances alimentaires</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newVar("intolerances_oui_non")
+        .global()
+        .set(getScale("intolerances"))
+    ,
+    newText("Si oui, précisez?")
+        .settings.bold()
+        .print()
+    ,
+    newTextInput("allergiesprecisions")
+        .print()
+        .wait()
+    ,
+    
+    newVar("allergies")
+        .global()
+        .set(getTextInput("allergiesprecisions"))
+    ,
+    newScale("Classes-socio-professionnelles",   "agriculteurs exploitants", "artisans, commerçants et chefs d'entreprise", "cadres et professions supérieures", "professions intermédiaires", "employés","retraités","autres"   )
+        .settings.before( newText("top", "<strong>Quelle est votre classe socio-professionnelle?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newVar("csp")
+        .global()
+        .set(getScale("Classes-socio-professionnelles"))
+    ,
+    newButton("Valider")
+        .print()
+        .wait()
+    )
+newTrial("régimes",
+    newScale("regimes",   "jamais   ", "une fois ou moins   ", "entre 3 et 4 fois   ", "plus de 4 fois    ")
+        .settings.before( newText("top", "<strong>Combien de fois mangez-vous de la viande (viande rouge et volaille) par semaine?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+     newVar("regime")
+        .global()
+        .set(getScale("regimes"))
+    ,
+    newScale("changement",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong>Avez-vous deja changé de regime alimentaire au cours de votre vie?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newVar("changement_regime")
+        .global()
+        .set(getScale("changement"))
+    ,
+    newText("<strong>Si oui, depuis combien de temps?</strong>")
+        .print()
+    ,
+    newTextInput("temps")
+        .print()
+        .wait()
+    ,
+    newVar("temps_changement")
+        .global()
+        .set(getTextInput("temps"))
+    ,
+    
+    newScale("repas",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong>Préparez-vous vos propres repas?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+     newVar("preparer_repas_oui_non")
+        .global()
+        .set(getScale("repas"))
+    ,
+    newScale("frequences","jamais", "une fois par semaine   ", "entre 2 et 4 fois par semaine  ", "une fois par jour   ", "Tous les repas      "    )
+        .settings.before( newText("top", "<strong>Combien de fois préparez-vous vos propres repas?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newVar("preparer_repas_frequence")
+        .global()
+        .set(getScale("frequences"))
+    ,
+    
+    newScale("vegan",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong>Avez-vous quelqu'un de végétarien ou vegan dans votre entourage proche?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newVar("amis_vege_vegan")
+        .global()
+        .set(getScale("vegan"))
+    ,
+    
+    
+     newScale("repas_vege",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong>Mangez-vous avec quelqu'un de vegetarien plus d'une fois par semaine?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    
+    newVar("manger_ac_vege")
+        .global()
+        .set(getScale("repas_vege"))
+    ,
+    newScale("vege_conversation",   "1", "2","3","4","5")
+        .settings.before( newText("top", "<strong>Le vegetarisme est-il un sujet de conversation fréquent avec votre entourage</strong>, (échelle de 1 à 5, avec 1=jamais et 5=beaucoup?") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newVar("frequence_conversation_vege")
+        .global()
+        .set(getScale("vege_conversation"))
+    ,
+    newScale("enjeux",   "1", "2","3","4","5")
+        .settings.before( newText("top", "<strong>Estimez vous que vous connaissez l’importance des enjeux santé,éthique et environnementaux associés à la consommation de viande ?</strong> (échelle de 1 à 5, avec 1 = pas du tout et 5 = beaucoup)") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+    ,
+    newVar("connaissance_enjeux")
+        .global()
+        .set(getScale("enjeux"))
+    ,
+    newText("<strong>Des commentaires à ajouter ?</strong>")
+        .print()
+    ,
+    newTextInput("com")
+        .print()
+        .wait()
+    ,
+    newVar("commentaires")
+        .global()
+        .set(getTextInput("com"))
+    ,
+    newButton("Valider")
+        .print()
+        .wait()
+     
+)
+
+.log( "age" , getVar("age") )
+.log("sex", getVar("sex"))
+.log("intoleranceson", getVar("intolerances_oui_non"))
+.log("allergies", getVar("allergies"))
+.log("csp", getVar("csp"))
+.log( "regime" , getVar("regime") )
+.log("changement_regime", getVar("changement_regime"))
+.log("temps_changement", getVar("temps_changement"))
+.log("preparer_repas_oui_non", getVar("preparer_repas_oui_non"))
+.log("preparer_repas_frequence", getVar("preparer_repas_frequence"))
+.log( "amis_vege_vegan" , getVar("amis_vege_vegan") )
+.log("manger_ac_vege", getVar("manger_ac_vege"))
+.log("frequence_conversation_vege", getVar("frequence_conversation_vege"))
+.log("connaissance_enjeux", getVar("connaissance_enjeux"))
+.log("commentaires", getVar("commentaires"))
+
+SendResults()
+
+// This Template command generates as many trials as there are rows in myTable.csv
+Template( "myTable.csv" ,
+    // Row will iteratively point to every row in myTable.csv
+    row => newTrial( "experiment" ,
+        // The trials are minimal: choose a pronoun from a DropDown list
+        newText("<p>Ecrivez <strong> un seul </strong>aliment que vous cuisineriez avec une proteine (vegetale ou animale) que l'on va vous imposer")
+            .print()
+        ,
+        newTextInput()
+            .before( newText(row.alimentimpose) )    // Print the sentence to the left of the list
+            .print()
+            .wait()
+            .log()                              // Make sure to log the participant's selection
+        ,
+        newButton("Next")
+            .print()
+            .wait()
+    )
+    .log( "alimentimpose" , row.alimentimpose )
+    .log( "choix" , row.choix )
+    // Add these two columns to the results lines of these Template-based trials
+)
+
+
+// Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
+newTrial( "bye" ,
+    newText("Merci pour votre participation!")
+        .print()
+    ,
+    newText("<p><a href='https://www.pcibex.net/'>Click here to validate your participation.</a></p>")
+        .print()
+    ,
+    newButton("void")
+        .wait()
+   
+)
+.setOption( "countsForProgressBar" , false )
+// Make sure the progress bar is full upon reaching this last (non-)trial
