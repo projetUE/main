@@ -6,7 +6,7 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
-Sequence( "intro", "généralités","régimes", randomize("experiment") , SendResults() , "bye" )
+Sequence( "intro", "généralités","régimes", SendResults(), "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() , "bye" )
 
 
 
@@ -18,7 +18,7 @@ newTrial("intro",
     newText("Mettez-vous dans une <strong>endroit calme</strong> et veuillez répondre le plus naturellement possiblement et en <strong>temps réel</strong>.")
         .print()
     ,
-    newText("<p>C’est l’heure de manger. Imaginez-vous, en situation normal, en train de vous préparer votre <strong>repas du midi</strong>, et plus précisément votre plat principal.")
+    newText("<p>C’est l’heure de manger. Imaginez-vous, en situation normale, avant le confinement, en train de vous préparer votre <strong>repas du midi</strong>, et plus précisément votre plat principal.")
         .print()
     ,
     newText("<p>Vous avez tout à disposition dans votre cuisine. Voici une liste non-exhaustive : riz, pâtes, pommes de terre, petit pois, carottes, semoule, courgettes, haricots verts, choux fleur, boulgour, épices (de votre choix), sauces de votre choix, patates douces, potimarron ou courge, frites, quinoa, tomates, oignon, ail, poivrons etc.")
@@ -259,14 +259,19 @@ newTrial("régimes",
 
 SendResults()
 
+newTrial("bloc1",
+    newText("<p>Ecrivez <strong> un seul </strong>aliment que vous cuisineriez avec une protéine (végétale ou animale) que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf) mais plutôt des légumes, féculents ou autre.")
+            .print()
+    ,
+    newButton("1 seul aliment")
+            .print()
+            .wait()
+)
+
 // This Template command generates as many trials as there are rows in myTable.csv
 Template( "myTable.csv" ,
     // Row will iteratively point to every row in myTable.csv
     row => newTrial( "experiment" ,
-        // The trials are minimal: choose a pronoun from a DropDown list
-        newText("<p>Ecrivez <strong> un seul </strong>aliment que vous cuisineriez avec une proteine (vegetale ou animale) que l'on va vous imposer")
-            .print()
-        ,
         newTextInput()
             .before( newText(row.alimentimpose) )    // Print the sentence to the left of the list
             .print()
@@ -282,6 +287,32 @@ Template( "myTable.csv" ,
     // Add these two columns to the results lines of these Template-based trials
 )
 
+newTrial("bloc2",
+    newText("<p>Ecrivez <strong> un ou plusieurs</strong>aliment(s) que vous cuisineriez avec une protéine (végétale ou animale) que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf) mais plutôt des légumes, féculents ou autre.")
+            .print()
+    ,
+    newButton("1 ou plusieurs aliment(s)")
+            .print()
+            .wait()
+)
+
+Template( "myTable.csv" ,
+    // Row will iteratively point to every row in myTable.csv
+    row => newTrial( "experiment2" ,
+        newTextInput()
+            .before( newText(row.alimentimpose) )    // Print the sentence to the left of the list
+            .print()
+            .wait()
+            .log()                              // Make sure to log the participant's selection
+        ,
+        newButton("Next")
+            .print()
+            .wait()
+    )
+    .log( "alimentimpose" , row.alimentimpose )
+    .log( "choix2" , row.choix2 )
+    // Add these two columns to the results lines of these Template-based trials
+)
 
 // Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
 newTrial( "bye" ,
