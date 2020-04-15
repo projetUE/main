@@ -60,7 +60,7 @@ newTrial("intro",
 .log( "ID" , getVar("ID") )
 
 newTrial( "généralités" ,
-    newText("<strong> Le questionnaire est bientôt fini ! </strong>")
+    newText("<strong> Le questionnaire est bientôt fini !  </strong>")
         .print()
     ,
     defaultText
@@ -119,7 +119,7 @@ newTrial( "généralités" ,
         .set(getTextInput("allergiesprecisions"))
     ,
     
-    newScale("Classes-socio-professionnelles",   "agriculteurs exploitants", "artisans", "commerçants", "chefs d'entreprise", "cadres et professions supérieures", "professions intermédiaires", "employés","retraités", "étudiants", "autres"   )
+    newScale("Classes-socio-professionnelles",   "agriculteurs exploitants", "artisans", "commerçants", "chefs d'entreprise", "cadres et professions supérieures", "professions intermédiaires", "employés","retraités", "étudiants", "autres" )
         .settings.before( newText("top", "<strong>Quelle est votre situation professionnelle ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
@@ -134,7 +134,7 @@ newTrial( "généralités" ,
         .print()
         .center()
         .wait()
-    )
+)
     
 newTrial("habitudes",
     newText("<strong> Avez vous déjà cuisiné un plat avec... </strong>" )
@@ -201,7 +201,11 @@ newTrial("habitudes",
         .print()
         .wait()
 )
+
 newTrial("régimes",
+    newText("<p> <strong> Les questions suivantes portent sur votre situation en temps normal, avant le confinement. </strong> ")
+        .print()
+    ,
     newScale("regimes",   "jamais   ", "une fois ou moins   ", "entre 3 et 4 fois   ", "plus de 4 fois    ")
         .settings.before( newText("top", "<strong> <p> Combien de fois mangez-vous de la viande (viande rouge et volaille) approximativement par semaine?</strong>") )
         .settings.radio()
@@ -349,7 +353,7 @@ newTrial("Enonce",
     defaultText
         .settings.center()
     ,    
-    newText("<p> <strong> C’est l’heure de manger. Imaginez-vous, en situation normale, avant le confinement, en train de vous préparer votre repas du midi, et plus précisément votre plat principal. </strong>")
+    newText("<p> <strong> C’est l’heure de manger. Imaginez-vous en situation normale, avant le confinement, en train de vous préparer votre repas du midi, et plus précisément votre plat principal. </strong>")
         .print()
     ,
     newText("<p>Vous avez tout à disposition dans votre cuisine.")
