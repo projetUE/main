@@ -522,4 +522,3 @@ newTrial( "bye" ,
 )
 .setOption( "countsForProgressBar" , false )
 // Make sure the progress bar is full upon reaching this last (non-)trial
-
