@@ -140,66 +140,107 @@ newTrial("habitudes",
     newText("<strong> Avez vous déjà cuisiné un plat avec... </strong>" )
         .print()
     ,
-    newScale("habitudes",   "oui   ", "non   ")
+    newScale("mangertofu",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> du tofu ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
     ,
-    newScale("habitudes",   "oui   ", "non   ")
+    newVar("manger_tofu_oui_non")
+        .global()
+        .set(getScale("mangertofu"))
+    ,
+    newScale("mangerfalafel",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> des falafels ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newVar("manger_falafel_oui_non")
+        .global()
+        .set(getScale("mangerfalafel"))
+    ,
+     newScale("mangergalette",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> des galettes de haricots rouges ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+     ,
+     newVar("manger_galette_oui_non")
+        .global()
+        .set(getScale("mangergalette"))
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newScale("mangerpoiscasses",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> des pois cassés ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+     ,
+     newVar("manger_poiscasses_oui_non")
+        .global()
+        .set(getScale("mangerpoiscasses"))
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newScale("mangerlentilles",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> des lentilles ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+     ,
+     newVar("manger_lentilles_oui_non")
+        .global()
+        .set(getScale("mangerlentilles"))
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newScale("mangerpoulet",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> du poulet ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+     ,
+     newVar("manger_poulet_oui_non")
+        .global()
+        .set(getScale("mangerpoulet"))
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newScale("mangerdinde",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> du blanc de dinde ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+     ,
+     newVar("manger_dinde_oui_non")
+        .global()
+        .set(getScale("mangerdinde"))
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newScale("mangersteak",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> du steak ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+     ,
+     newVar("manger_steak_oui_non")
+        .global()
+        .set(getScale("mangersteak"))
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newScale("mangersaucisse",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> des saucisses ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+     ,
+     newVar("manger_saucisses_oui_non")
+        .global()
+        .set(getScale("mangersaucisses"))
     ,
-     newScale("habitudes",   "oui   ", "non   ")
+     newScale("mangeragneau",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> du gigot d'agneau ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
         .wait()
+    ,
+     newVar("manger_agneau_oui_non")
+        .global()
+        .set(getScale("mangeragneau"))
+    ,
 )
 
 newTrial("régimes",
