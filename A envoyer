@@ -6,7 +6,7 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
-Sequence( "intro", "Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() ,"généralités","régimes", SendResults(), "bye" )
+Sequence("intro","habitudes","régimes","généralités","Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() , SendResults(), "bye" )
 
 
 PennController.DebugOff()
@@ -135,9 +135,75 @@ newTrial( "généralités" ,
         .center()
         .wait()
     )
+    
+newTrial("habitudes",
+    newText("<strong> Avez vous déjà cuisiné un plat avec... </strong>" )
+        .print()
+    ,
+    newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> du tofu ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+    newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> des falafels ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> des galettes de haricots rouges ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> des pois cassés ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> des lentilles ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> du poulet ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> du blanc de dinde ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> du steak ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> des saucisses ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+    ,
+     newScale("habitudes",   "oui   ", "non   ")
+        .settings.before( newText("top", "<strong> du gigot d'agneau ?</strong>") )
+        .settings.radio()
+        .settings.labelsPosition("right")
+        .print()
+        .wait()
+)
 newTrial("régimes",
     newScale("regimes",   "jamais   ", "une fois ou moins   ", "entre 3 et 4 fois   ", "plus de 4 fois    ")
-        .settings.before( newText("top", "<strong>Combien de fois mangez-vous de la viande (viande rouge et volaille) approximativement par semaine?</strong>") )
+        .settings.before( newText("top", "<strong> <p> Combien de fois mangez-vous de la viande (viande rouge et volaille) approximativement par semaine?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -194,7 +260,7 @@ newTrial("régimes",
     ,
     
     newScale("vegan",   "oui   ", "non   ")
-        .settings.before( newText("top", "<strong>Avez-vous quelqu'un de végétarien ou vegan dans votre entourage proche?</strong>") )
+        .settings.before( newText("top", "<strong> Avez-vous quelqu'un de végétarien ou vegan dans votre entourage proche?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -241,7 +307,7 @@ newTrial("régimes",
         .global()
         .set(getScale("enjeux"))
     ,
-    newText("<strong> <p> Des commentaires à ajouter ?</strong> (appuyer sur la touche d'entrée pour passer à la suite)")
+    newText("<strong> <p> Des commentaires à ajouter ? ex : si vous détestez un aliment que l'on vous a donné. </strong> (appuyer sur la touche d'entrée pour passer à la suite)")
         .print()
         
     ,
@@ -322,7 +388,7 @@ newTrial("bloc1",
 Template( "myTable.csv" ,
     // Row will iteratively point to every row in myTable.csv
     row => newTrial( "experiment" ,
-        newText(  "<p>Appuyer sur entrée après avoir écrit votre réponse svp puis sur Suivant." )
+        newText(  "<p> Appuyer sur entrée après avoir écrit votre réponse svp puis sur Suivant." )
             .center()
             .print()
         ,
@@ -364,7 +430,6 @@ Template( "myTable.csv" ,
         ,
         newTextInput()
             .before( newText( row.alimentimpose) ) // Print the sentence to the left of the list
-            .before( newText( " ... ") )
             .print()
             .wait()
             .log()                              // Make sure to log the participant's selection
