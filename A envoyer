@@ -9,7 +9,7 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 Sequence( "intro", "Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() ,"généralités","régimes", SendResults(), "bye" )
 
 
-
+PennController.DebugOff()
 
 newTrial("intro",
     newImage( "APT.jpg")
