@@ -46,9 +46,11 @@ newTrial("intro",
 newTrial( "généralités" ,
     defaultText
         .settings.center()
+        .color("blue")
     ,
     newText("<p>Vous allez à present remplir un petit questionnaire:")
         .settings.bold()
+        .color("red")
         .print()
     ,
     newScale("Sexe","une femme","un homme")
