@@ -6,34 +6,50 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
-Sequence( "intro", "généralités","régimes", SendResults(), "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() , "bye" )
+Sequence( "intro", "Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() ,"généralités","régimes", SendResults(), "bye" )
 
 
 
 
 newTrial("intro",
-    newText("<p>Nous faisons un test sur les habitudes alimentaires et sur la manière de cuisiner.")
+    newImage( "APT.jpg")
+        .size(591,118)
+        .center()
         .print()
     ,
-    newText("Mettez-vous dans un <strong>endroit calme</strong> et veuillez répondre le plus naturellement possible.")
+    defaultText
+        .settings.center()
+    ,
+    newText("<p>Bonjour !  ")
+        .print()
+    ,     
+    
+    newText("Merci pour votre participation !")
         .print()
     ,
-    newText("<p> <strong> C’est l’heure de manger. Imaginez-vous, en situation normale, avant le confinement, en train de vous préparer votre repas du midi, et plus précisément votre plat principal. </strong>")
+    
+    newText("<p>Dans le cadre d'un projet de recherche à AgroParisTech, nous avons élaboré un questionnaire afin d'étudier les habitudes alimentaires des consommateurs.")
         .print()
     ,
-    newText("<p>Vous avez tout à disposition dans votre cuisine.")
+    newText(" <p>Pour toute question ou commentaire, n'hésitez pas à nous contacter à l'adresse suivante : elisa.mosse@agroparistech.fr ")
         .print()
     ,
-    newText("<p> <strong> Composer un plat principal pour le midi. Vous ne devez choisir qu'un seul accompagnement. </strong>")
+    
+    newText("<p>Veuillez vous mettre dans un <strong>endroit calme</strong> et répondre le plus naturellement possible.")
         .print()
     ,
-    newText("<p>Entrez votre nom et cliquez sur le bouton Commencer.")
+    
+    
+    newText("<p>Entrez votre nom et cliquez sur le bouton : Commencer.")
         .print()
     ,
     newTextInput("inputID")
+        .center()
         .print()
     ,
-    newButton("<p>Commencer")
+    
+    newButton("<p> Commencer")
+        .center()
         .print()
         .wait()
     ,
@@ -44,6 +60,9 @@ newTrial("intro",
 .log( "ID" , getVar("ID") )
 
 newTrial( "généralités" ,
+    newText("<strong> Le questionnaire est bientôt fini ! </strong>")
+        .print()
+    ,
     defaultText
         .settings.center()
         .color("blue")
@@ -65,6 +84,7 @@ newTrial( "généralités" ,
         .print()
     ,
     newTextInput("age")
+        .center()
         .print()
         .wait()
     ,
@@ -74,7 +94,7 @@ newTrial( "généralités" ,
         .set(getTextInput("age"))
     ,
     newScale("intolerances",   "oui   ", "non   ")
-        .settings.before( newText("top", "<strong>Avez-vous des allergies ou des intolérances alimentaires</strong>") )
+        .settings.before( newText("top", "<strong>Avez-vous des allergies ou des intolérances alimentaires ? </strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -84,22 +104,23 @@ newTrial( "généralités" ,
         .global()
         .set(getScale("intolerances"))
     ,
-    newText("Si oui, précisez et appuyez sur le bouton Enter/Entrée de votre clavier")
+    newText("Si oui, précisez laquelle. (appuyer sur la touche d'entrée pour passer à la suite)")
+        .print()
         .settings.bold()
         .print()
     ,
     newTextInput("allergiesprecisions")
+        .center()
         .print()
         .wait()
     ,
-    
     newVar("allergies")
         .global()
         .set(getTextInput("allergiesprecisions"))
     ,
     
     newScale("Classes-socio-professionnelles",   "agriculteurs exploitants", "artisans", "commerçants", "chefs d'entreprise", "cadres et professions supérieures", "professions intermédiaires", "employés","retraités", "étudiants", "autres"   )
-        .settings.before( newText("top", "<strong>Quelle est votre classe socio-professionnelle?</strong>") )
+        .settings.before( newText("top", "<strong>Quelle est votre situation professionnelle ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -111,6 +132,7 @@ newTrial( "généralités" ,
     ,
     newButton("Valider")
         .print()
+        .center()
         .wait()
     )
 newTrial("régimes",
@@ -136,7 +158,7 @@ newTrial("régimes",
         .global()
         .set(getScale("changement"))
     ,
-    newText("<strong>Si oui, depuis combien de temps?</strong>")
+    newText("<strong>Si oui, depuis combien de temps?</strong> (appuyer sur la touche d'entrée pour passer à la suite)")
         .print()
     ,
     newTextInput("temps")
@@ -197,7 +219,7 @@ newTrial("régimes",
         .set(getScale("repas_vege"))
     ,
     newScale("vege_conversation",   "1", "2","3","4","5")
-        .settings.before( newText("top", "<strong>Le vegetarisme est-il un sujet de conversation fréquent avec votre entourage</strong>, (échelle de 1 à 5, avec 1=jamais et 5=beaucoup?") )
+        .settings.before( newText("top", "<strong>Le végétarisme est-il un sujet de conversation fréquent avec votre entourage ? </strong> (échelle de 1 à 5, avec 1=jamais et 5=beaucoup?") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -208,7 +230,8 @@ newTrial("régimes",
         .set(getScale("vege_conversation"))
     ,
     newScale("enjeux",   "1", "2","3","4","5")
-        .settings.before( newText("top", "<strong>Estimez vous que vous connaissez l’importance des enjeux santé, éthique et environnementaux associés à la consommation de viande ?</strong> (échelle de 1 à 5, avec 1 = pas du tout et 5 = beaucoup)") )
+        .settings.before( newText("top", "<strong>Estimez vous que vous connaissez l’importance des enjeux santé, éthique et environnementaux associés à la consommation de viande ?</strong>") )
+        .settings.before( newText("top", "(échelle de 1 à 5, avec 1 = pas du tout et 5 = beaucoup)") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -218,10 +241,12 @@ newTrial("régimes",
         .global()
         .set(getScale("enjeux"))
     ,
-    newText("<strong>Des commentaires à ajouter ?</strong> (appuyer sur la touche d'entrée pour passer à la suite)")
+    newText("<strong> <p> Des commentaires à ajouter ?</strong> (appuyer sur la touche d'entrée pour passer à la suite)")
         .print()
+        
     ,
     newTextInput("com")
+        .center()
         .print()
         .wait()
     ,
@@ -230,6 +255,7 @@ newTrial("régimes",
         .set(getTextInput("com"))
     ,
     newButton("Valider")
+        .center()
         .print()
         .wait()
      
@@ -253,27 +279,62 @@ newTrial("régimes",
 
 SendResults()
 
-newTrial("bloc1",
-    newText("<p> Veuillez composer un plat principal pour le midi. Ecrivez <strong> UN SEUL </strong> accompagnement que vous cuisineriez avec un aliment que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).")
-            .print()
+newTrial("Enonce",
+    defaultText
+        .settings.center()
+    ,    
+    newText("<p> <strong> C’est l’heure de manger. Imaginez-vous, en situation normale, avant le confinement, en train de vous préparer votre repas du midi, et plus précisément votre plat principal. </strong>")
+        .print()
     ,
-    newButton("1 seul aliment")
+    newText("<p>Vous avez tout à disposition dans votre cuisine.")
+        .print()
+    ,
+    newText("<p> <strong> Vous ne devez choisir, pour l'instant, qu'un seul accompagnement. </strong>")
+        .print()
+    ,
+    newButton("Suivant")
             .print()
+            .center()
             .wait()
+)
+
+newTrial("bloc1",
+    defaultText
+        .settings.center()
+    ,
+    newText("<p> Veuillez composer un plat principal pour le midi.") 
+        .print()
+    ,
+    newText(" Veuillez écrire <strong>UN seul </strong> accompagnement que vous cuisineriez avec un aliment que l'on va vous donner.")
+        .print()
+    ,
+    newText("Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).</p>")
+        .print()
+    ,    
+    
+    newButton("<p> 1 seul aliment")
+        .print()
+        .center()
+        .wait()
 )
 
 // This Template command generates as many trials as there are rows in myTable.csv
 Template( "myTable.csv" ,
     // Row will iteratively point to every row in myTable.csv
     row => newTrial( "experiment" ,
+        newText(  "<p>Appuyer sur entrée après avoir écrit votre réponse svp puis sur Suivant." )
+            .center()
+            .print()
+        ,
         newTextInput()
-            .before( newText(row.alimentimpose) )    // Print the sentence to the left of the list
+            .before( newText( row.alimentimpose ) )  // Print the sentence to the left of the list
             .print()
             .wait()
             .log()                              // Make sure to log the participant's selection
         ,
-        newButton("Next")
+        newButton("Suivant")
             .print()
+            .center()
             .wait()
     )
     .log( "alimentimpose" , row.alimentimpose )
@@ -282,25 +343,35 @@ Template( "myTable.csv" ,
 )
 
 newTrial("bloc2",
-    newText("<p>Ecrivez <strong> UN ou PLUSIEURS </strong>accompagnement(s) que vous cuisineriez avec un aliment que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).")
+    newText("<p>Veuillez écrire <strong> UN ou PLUSIEURS </strong>accompagnement(s) que vous cuisineriez avec un aliment que l'on va vous donner.")
+        .print()
+    ,
+    newText("<p>Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).")
             .print()
     ,
     newButton("1 ou plusieurs aliment(s)")
             .print()
+            .center()
             .wait()
 )
 
 Template( "myTable.csv" ,
     // Row will iteratively point to every row in myTable.csv
     row => newTrial( "experiment2" ,
+         newText(  "<p>Appuyer sur entrée après avoir écrit votre réponse svp puis sur Suivant." )
+            .center()
+            .print()
+        ,
         newTextInput()
-            .before( newText(row.alimentimpose) )    // Print the sentence to the left of the list
+            .before( newText( row.alimentimpose) ) // Print the sentence to the left of the list
+            .before( newText( " ... ") )
             .print()
             .wait()
             .log()                              // Make sure to log the participant's selection
         ,
-        newButton("Next")
+        newButton("Suivant")
             .print()
+            .center()
             .wait()
     )
     .log( "alimentimpose" , row.alimentimpose )
@@ -310,13 +381,11 @@ Template( "myTable.csv" ,
 
 // Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
 newTrial( "bye" ,
-    newText("Merci pour votre participation!")
-        .print()
-    ,
-    newText("<p><a href='https://www.pcibex.net/'>Click here to validate your participation.</a></p>")
+    newText("Merci pour votre participation !")
         .print()
     ,
     newButton("void")
+        .center()
         .wait()
    
 )
