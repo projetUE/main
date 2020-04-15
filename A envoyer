@@ -6,7 +6,7 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
-Sequence("intro","Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() ,"généralités", "habitudes", "régimes", SendResults(), "bye" )
+Sequence(intro","Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() ,"généralités", "habitudes", "régimes", SendResults(), "bye" )
 
 
 PennController.DebugOff()
@@ -204,6 +204,8 @@ newTrial("habitudes",
 
 newTrial("régimes",
     newText("<p> <strong> Les questions suivantes portent sur votre situation en temps normal, avant le confinement. </strong> ")
+        .center()
+        .color("red")
         .print()
     ,
     newScale("regimes",   "jamais   ", "une fois ou moins   ", "entre 3 et 4 fois   ", "plus de 4 fois    ")
@@ -460,3 +462,4 @@ newTrial( "bye" ,
 )
 .setOption( "countsForProgressBar" , false )
 // Make sure the progress bar is full upon reaching this last (non-)trial
+
