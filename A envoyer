@@ -9,7 +9,6 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 Sequence("intro","Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() ,"généralités", "habitudes", "régimes", SendResults(), "bye" )
 
 
-PennController.DebugOff()
 
 newTrial("intro",
     newImage( "APT.jpg")
@@ -145,6 +144,7 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
     ,
     newVar("manger_tofu_oui_non")
         .global()
@@ -155,6 +155,7 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
     ,
      newVar("manger_falafel_oui_non")
         .global()
@@ -165,6 +166,7 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
      ,
      newVar("manger_galette_oui_non")
         .global()
@@ -175,6 +177,7 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
      ,
      newVar("manger_poiscasses_oui_non")
         .global()
@@ -185,6 +188,7 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
      ,
      newVar("manger_lentilles_oui_non")
         .global()
@@ -195,6 +199,7 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
      ,
      newVar("manger_poulet_oui_non")
         .global()
@@ -205,6 +210,7 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
      ,
      newVar("manger_dinde_oui_non")
         .global()
@@ -215,32 +221,33 @@ newTrial("habitudes",
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
      ,
      newVar("manger_steak_oui_non")
         .global()
         .set(getScale("mangersteak"))
     ,
-     newScale("mangersaucisse",   "oui   ", "non   ")
+     newScale("mangersaucisses",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> des saucisses ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
+        .wait()
      ,
      newVar("manger_saucisses_oui_non")
         .global()
         .set(getScale("mangersaucisses"))
     ,
-     newScale("mangeragneau",   "oui   ", "non   ")
+    newScale("mangeragneau",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong> du gigot d'agneau ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
         .wait()
-    ,
+     ,
      newVar("manger_agneau_oui_non")
         .global()
         .set(getScale("mangeragneau"))
-    ,
 )
 
 newTrial("régimes",
@@ -376,9 +383,19 @@ newTrial("régimes",
 
 .log( "age" , getVar("age") )
 .log("sex", getVar("sex"))
-.log("intoleranceson", getVar("intolerances_oui_non"))
+.log("intolerances_oui_non", getVar("intolerances_oui_non"))
 .log("allergies", getVar("allergies"))
 .log("csp", getVar("csp"))
+.log("manger_tofu_oui_non", getVar("manger_tofu_oui_non"))
+.log("manger_falafel_oui_non", getVar("manger_falafel_oui_non"))
+.log("manger_galette_oui_non", getVar("manger_galette_oui_non"))
+.log("manger_poiscasses_oui_non", getVar("manger_poiscasses_oui_non"))
+.log("manger_lentilles_oui_non", getVar("manger_lentilles_oui_non"))
+.log("manger_poulet_oui_non", getVar("manger_poulet_oui_non"))
+.log("manger_dinde_oui_non", getVar("manger_dinde_oui_non"))
+.log("manger_steak_oui_non", getVar("manger_steak_oui_non"))
+.log("manger_saucisses_oui_non", getVar("manger_saucisses_oui_non"))
+.log("manger_agneau_oui_non", getVar("manger_agneau_oui_non"))
 .log( "regime" , getVar("regime") )
 .log("changement_regime", getVar("changement_regime"))
 .log("temps_changement", getVar("temps_changement"))
@@ -490,6 +507,8 @@ Template( "myTable.csv" ,
     .log( "choix2" , row.choix2 )
     // Add these two columns to the results lines of these Template-based trials
 )
+
+SendResults()
 
 // Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
 newTrial( "bye" ,
