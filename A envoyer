@@ -24,11 +24,7 @@ newTrial("intro",
     newText("<p>Vous avez tout à disposition dans votre cuisine. Voici une liste non-exhaustive : riz, pâtes, pommes de terre, petit pois, carottes, semoule, courgettes, haricots verts, choux fleur, boulgour, épices (de votre choix), sauces de votre choix, patates douces, potimarron ou courge, frites, quinoa, tomates, oignon, ail, poivrons etc.")
         .print()
     ,
-    newText("<p>Dans un premier temps vous allez composer un plat principal pour le midi et vous ne devez choisir qu'un seul accompagnement.")
-        .print()
-    ,
-    newImage("alimentation.jpg")
-        .size(300,300)
+    newText("<p>Composer un plat principal pour le midi. Vous ne devez choisir qu'un seul accompagnement.")
         .print()
     ,
     newText("<p>Entre ton nom et clique sur le bouton START.")
@@ -91,7 +87,7 @@ newTrial( "généralités" ,
         .global()
         .set(getScale("intolerances"))
     ,
-    newText("Si oui, précisez?")
+    newText("Si oui, précisez et appuyez sur le bouton Enter de votre clavier")
         .settings.bold()
         .print()
     ,
@@ -224,7 +220,7 @@ newTrial("régimes",
         .global()
         .set(getScale("enjeux"))
     ,
-    newText("<strong>Des commentaires à ajouter ?</strong>")
+    newText("<strong>Des commentaires à ajouter ?</strong> (appuyer sur la touche d'entrée pour passer à la suite)")
         .print()
     ,
     newTextInput("com")
@@ -260,7 +256,7 @@ newTrial("régimes",
 SendResults()
 
 newTrial("bloc1",
-    newText("<p>Ecrivez <strong> un seul </strong>aliment que vous cuisineriez avec une protéine (végétale ou animale) que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf) mais plutôt des légumes, féculents ou autre.")
+    newText("<p>Ecrivez <strong> un seul </strong> aliment que vous cuisineriez avec une protéine (végétale ou animale) que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf) mais plutôt des légumes, féculents ou autre.")
             .print()
     ,
     newButton("1 seul aliment")
