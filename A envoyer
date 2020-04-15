@@ -15,25 +15,25 @@ newTrial("intro",
     newText("<p>Nous faisons un test sur les habitudes alimentaires et sur la manière de cuisiner.")
         .print()
     ,
-    newText("Mettez-vous dans une <strong>endroit calme</strong> et veuillez répondre le plus naturellement possiblement et en <strong>temps réel</strong>.")
+    newText("Mettez-vous dans un <strong>endroit calme</strong> et veuillez répondre le plus naturellement possible.")
         .print()
     ,
-    newText("<p>C’est l’heure de manger. Imaginez-vous, en situation normale, avant le confinement, en train de vous préparer votre <strong>repas du midi</strong>, et plus précisément votre plat principal.")
+    newText("<p> <strong> C’est l’heure de manger. Imaginez-vous, en situation normale, avant le confinement, en train de vous préparer votre repas du midi, et plus précisément votre plat principal. </strong>")
         .print()
     ,
-    newText("<p>Vous avez tout à disposition dans votre cuisine. Voici une liste non-exhaustive : riz, pâtes, pommes de terre, petit pois, carottes, semoule, courgettes, haricots verts, choux fleur, boulgour, épices (de votre choix), sauces de votre choix, patates douces, potimarron ou courge, frites, quinoa, tomates, oignon, ail, poivrons etc.")
+    newText("<p>Vous avez tout à disposition dans votre cuisine.")
         .print()
     ,
-    newText("<p>Composer un plat principal pour le midi. Vous ne devez choisir qu'un seul accompagnement.")
+    newText("<p> <strong> Composer un plat principal pour le midi. Vous ne devez choisir qu'un seul accompagnement. </strong>")
         .print()
     ,
-    newText("<p>Entre ton nom et clique sur le bouton START.")
+    newText("<p>Entrez votre nom et cliquez sur le bouton Commencer.")
         .print()
     ,
     newTextInput("inputID")
         .print()
     ,
-    newButton("<p>Start")
+    newButton("<p>Commencer")
         .print()
         .wait()
     ,
@@ -48,12 +48,7 @@ newTrial( "généralités" ,
         .settings.center()
         .color("blue")
     ,
-    newText("<p>Vous allez à present remplir un petit questionnaire:")
-        .settings.bold()
-        .color("red")
-        .print()
-    ,
-    newScale("Sexe","une femme","un homme")
+    newScale("Sexe","une femme","un homme", "Autre", "Je ne souhaite pas préciser")
         .settings.before( newText("top","<strong>Vous êtes ... ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
@@ -69,14 +64,14 @@ newTrial( "généralités" ,
     newText("<strong>Quel est votre âge ?</strong>")
         .print()
     ,
-    newTextInput("qage")
+    newTextInput("age")
         .print()
         .wait()
     ,
     
     newVar("age")
         .global()
-        .set(getTextInput("qage"))
+        .set(getTextInput("age"))
     ,
     newScale("intolerances",   "oui   ", "non   ")
         .settings.before( newText("top", "<strong>Avez-vous des allergies ou des intolérances alimentaires</strong>") )
@@ -89,7 +84,7 @@ newTrial( "généralités" ,
         .global()
         .set(getScale("intolerances"))
     ,
-    newText("Si oui, précisez et appuyez sur le bouton Enter de votre clavier")
+    newText("Si oui, précisez et appuyez sur le bouton Enter/Entrée de votre clavier")
         .settings.bold()
         .print()
     ,
@@ -102,7 +97,8 @@ newTrial( "généralités" ,
         .global()
         .set(getTextInput("allergiesprecisions"))
     ,
-    newScale("Classes-socio-professionnelles",   "agriculteurs exploitants", "artisans, commerçants et chefs d'entreprise", "cadres et professions supérieures", "professions intermédiaires", "employés","retraités","autres"   )
+    
+    newScale("Classes-socio-professionnelles",   "agriculteurs exploitants", "artisans", "commerçants", "chefs d'entreprise", "cadres et professions supérieures", "professions intermédiaires", "employés","retraités", "étudiants", "autres"   )
         .settings.before( newText("top", "<strong>Quelle est votre classe socio-professionnelle?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
@@ -119,7 +115,7 @@ newTrial( "généralités" ,
     )
 newTrial("régimes",
     newScale("regimes",   "jamais   ", "une fois ou moins   ", "entre 3 et 4 fois   ", "plus de 4 fois    ")
-        .settings.before( newText("top", "<strong>Combien de fois mangez-vous de la viande (viande rouge et volaille) par semaine?</strong>") )
+        .settings.before( newText("top", "<strong>Combien de fois mangez-vous de la viande (viande rouge et volaille) approximativement par semaine?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -130,7 +126,7 @@ newTrial("régimes",
         .set(getScale("regimes"))
     ,
     newScale("changement",   "oui   ", "non   ")
-        .settings.before( newText("top", "<strong>Avez-vous deja changé de regime alimentaire au cours de votre vie?</strong>") )
+        .settings.before( newText("top", "<strong>Avez-vous déjà changé votre consommation de viande au cours de votre vie?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -189,7 +185,7 @@ newTrial("régimes",
     
     
      newScale("repas_vege",   "oui   ", "non   ")
-        .settings.before( newText("top", "<strong>Mangez-vous avec quelqu'un de vegetarien plus d'une fois par semaine?</strong>") )
+        .settings.before( newText("top", "<strong>Mangez-vous avec quelqu'un de végétarien plus d'une fois par semaine?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -212,7 +208,7 @@ newTrial("régimes",
         .set(getScale("vege_conversation"))
     ,
     newScale("enjeux",   "1", "2","3","4","5")
-        .settings.before( newText("top", "<strong>Estimez vous que vous connaissez l’importance des enjeux santé,éthique et environnementaux associés à la consommation de viande ?</strong> (échelle de 1 à 5, avec 1 = pas du tout et 5 = beaucoup)") )
+        .settings.before( newText("top", "<strong>Estimez vous que vous connaissez l’importance des enjeux santé, éthique et environnementaux associés à la consommation de viande ?</strong> (échelle de 1 à 5, avec 1 = pas du tout et 5 = beaucoup)") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -258,7 +254,7 @@ newTrial("régimes",
 SendResults()
 
 newTrial("bloc1",
-    newText("<p>Ecrivez <strong> un seul </strong> aliment que vous cuisineriez avec une protéine (végétale ou animale) que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf) mais plutôt des légumes, féculents ou autre.")
+    newText("<p> Veuillez composer un plat principal pour le midi. Ecrivez <strong> UN SEUL </strong> accompagnement que vous cuisineriez avec un aliment que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).")
             .print()
     ,
     newButton("1 seul aliment")
@@ -286,7 +282,7 @@ Template( "myTable.csv" ,
 )
 
 newTrial("bloc2",
-    newText("<p>Ecrivez <strong> un ou plusieurs</strong>aliment(s) que vous cuisineriez avec une protéine (végétale ou animale) que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf) mais plutôt des légumes, féculents ou autre.")
+    newText("<p>Ecrivez <strong> UN ou PLUSIEURS </strong>accompagnement(s) que vous cuisineriez avec un aliment que l'on va vous imposer. Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).")
             .print()
     ,
     newButton("1 ou plusieurs aliment(s)")
