@@ -291,7 +291,7 @@ newTrial("régimes",
     ,
     
     newScale("repas",   "oui   ", "non   ")
-        .settings.before( newText("top", "<strong>Préparez-vous vos propres repas?</strong>") )
+        .settings.before( newText("top", "<strong>Préparez-vous vos propres repas ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -327,7 +327,7 @@ newTrial("régimes",
     
     
      newScale("repas_vege",   "oui   ", "non   ")
-        .settings.before( newText("top", "<strong>Mangez-vous avec quelqu'un de végétarien plus d'une fois par semaine?</strong>") )
+        .settings.before( newText("top", "<strong>Mangez-vous fréquemment avec quelqu'un de végétarien ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
