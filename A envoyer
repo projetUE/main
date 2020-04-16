@@ -6,9 +6,9 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
-Sequence("intro","Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"), SendResults() ,"généralités", "habitudes", "régimes", SendResults(), "bye" )
+Sequence("intro","Enonce", "bloc1", randomize("experiment") , "bloc2", randomize("experiment2"),"généralités", "habitudes", "régimes", SendResults(), "bye" )
 
-
+PennController.DebugOff()
 
 newTrial("intro",
     newImage( "APT.jpg")
@@ -508,7 +508,6 @@ Template( "myTable.csv" ,
     // Add these two columns to the results lines of these Template-based trials
 )
 
-SendResults()
 
 // Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
 newTrial( "bye" ,
