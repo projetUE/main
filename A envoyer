@@ -511,7 +511,7 @@ Template( "myTable.csv" ,
 
 // Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
 newTrial( "bye" ,
-    newText("Merci pour votre participation !")
+    newText("Nous vous remercions pour votre participation qui va grandement nous aider pour nos recherches. ")
         .print()
     ,
     newButton("void")
