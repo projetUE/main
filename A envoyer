@@ -64,7 +64,6 @@ newTrial( "généralités" ,
     ,
     defaultText
         .settings.center()
-        .color("blue")
     ,
     newScale("Sexe","une femme","un homme", "Autre", "Je ne souhaite pas préciser")
         .settings.before( newText("top","<strong>Vous êtes ... ?</strong>") )
