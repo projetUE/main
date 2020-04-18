@@ -39,7 +39,7 @@ newTrial("intro",
     ,
     
     
-    newText("<p>Entrez votre nom et cliquez sur le bouton : Commencer.")
+    newText("<p>Entrez votre prénom ou pseudo et cliquez sur le bouton : Commencer.")
         .print()
     ,
     newTextInput("inputID")
@@ -59,14 +59,16 @@ newTrial("intro",
 .log( "ID" , getVar("ID") )
 
 newTrial( "généralités" ,
-    newText("<strong> Le questionnaire est bientôt fini !  </strong>")
+    newText("Allez, le questionnaire est bientôt fini ! </p> ")
+        .italic()
+        .center()
         .print()
     ,
     defaultText
         .settings.center()
     ,
     newScale("Sexe","une femme","un homme", "Autre", "Je ne souhaite pas préciser")
-        .settings.before( newText("top","<strong>Vous êtes ... ?</strong>") )
+        .settings.before( newText("top","<strong> <p>Vous êtes ... ?</strong>") )
         .settings.radio()
         .settings.labelsPosition("right")
         .print()
@@ -128,6 +130,7 @@ newTrial( "généralités" ,
         .global()
         .set(getScale("Classes-socio-professionnelles"))
     ,
+    
     newButton("Valider")
         .print()
         .center()
@@ -247,6 +250,7 @@ newTrial("habitudes",
      newVar("manger_agneau_oui_non")
         .global()
         .set(getScale("mangeragneau"))
+        ,
 )
 
 newTrial("régimes",
@@ -281,6 +285,7 @@ newTrial("régimes",
         .print()
     ,
     newTextInput("temps")
+        .center()
         .print()
         .wait()
     ,
@@ -374,10 +379,9 @@ newTrial("régimes",
         .set(getTextInput("com"))
     ,
     newButton("Valider")
-        .center()
-        .print()
-        .wait()
-     
+            .print()
+            .center()
+            .wait()
 )
 
 .log( "age" , getVar("age") )
@@ -421,7 +425,7 @@ newTrial("Enonce",
     newText("<p> <strong> Vous ne devez choisir, pour l'instant, qu'un seul accompagnement. </strong>")
         .print()
     ,
-    newButton("Suivant")
+    newButton("C'est parti !")
             .print()
             .center()
             .wait()
@@ -434,10 +438,10 @@ newTrial("bloc1",
     newText("<p> Veuillez composer un plat principal pour le midi.") 
         .print()
     ,
-    newText(" Veuillez écrire <strong>UN seul </strong> accompagnement que vous cuisineriez avec un aliment que l'on va vous donner.")
+    newText(" Vous allez écrire <strong>UN seul </strong> accompagnement que vous cuisineriez avec un aliment que l'on va vous donner.")
         .print()
     ,
-    newText("Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).</p>")
+    newText("<p> Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).</p>")
         .print()
     ,    
     
@@ -451,7 +455,7 @@ newTrial("bloc1",
 Template( "myTable.csv" ,
     // Row will iteratively point to every row in myTable.csv
     row => newTrial( "experiment" ,
-        newText(  "<p> Appuyer sur entrée après avoir écrit votre réponse svp puis sur Suivant." )
+        newText(  "<p> N’oubliez pas d’appuyer sur Entrée après avoir écrit votre réponse puis sur Suivant. " )
             .center()
             .print()
         ,
@@ -472,12 +476,24 @@ Template( "myTable.csv" ,
 )
 
 newTrial("bloc2",
-    newText("<p>Veuillez écrire <strong> UN ou PLUSIEURS </strong>accompagnement(s) que vous cuisineriez avec un aliment que l'on va vous donner.")
+    newText("Vous êtes à la moitié de ce questionnaire. Dernière ligne droite, encore un petit effort !</p> ")
+        .center()
+        .settings.italic()
         .print()
     ,
-    newText("<p>Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).")
+    
+    
+    newText("<p> Veuillez composer un plat principal pour le midi. ")
+        .center()
+        .print()
+    ,
+    newText("Vous allez écrire <strong> UN ou PLUSIEURS </strong>accompagnement(s) que vous cuisineriez avec un aliment que l'on va vous donner.")
+        .print()
+    ,
+    newText("<p> Veuillez ne pas choisir de protéines animales pour vos accompagnements (pas de viande, poisson, fromage, oeuf).</p>")
             .print()
     ,
+    
     newButton("1 ou plusieurs aliment(s)")
             .print()
             .center()
@@ -510,7 +526,8 @@ Template( "myTable.csv" ,
 
 // Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
 newTrial( "bye" ,
-    newText("Nous vous remercions pour votre participation qui va grandement nous aider pour nos recherches. ")
+    newText("Nous vous remercions pour votre participation qui va grandement nous aider pour nos recherches. <p> Nous vous souhaitons bon courage durant cette période de confinement ! ")
+        .center()
         .print()
     ,
     newButton("void")
